@@ -1,0 +1,90 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="Example.css" />
+
+    <script src="classes/misc/color.js"></script>
+	<script src="SimplePicker.js"></script>
+
+	<script type="text/javascript">
+	    function setupPicker(){
+		    // Bare unstyled picker with range controls and text input fields.
+	        var sp = new SimplePicker("slider", "color", "preview");
+		    sp.control.bindRGB("red", "green", "blue");
+		    sp.control.bindHSL("hue", "sat", "lum");
+		    sp.control.bindInputRGB("rgb");
+		    sp.control.bindInputHSL("hsl");
+		    sp.setColor("#ff0000");
+		    sp.draw();
+
+            // Picker with CSS styled elements 
+		    sp = new SimplePicker("sliderStyle", "colorStyle", "previewStyle");
+		    sp.control.bindRGB("redStyle", "greenStyle", "blueStyle");
+		    sp.control.bindHSL("hueStyle", "satStyle", "lumStyle");
+		    sp.control.bindInputRGB("rgbStyle");
+		    sp.control.bindInputHSL("hslStyle");
+		    sp.setRGB(255, 0, 0);
+		   
+		    sp.draw();
+
+			// Experimental, faster.. remove need for auto-adjusting border-bg?
+		    // sp.pointer.adjust.prop = false;
+	    }
+	</script>
+</head>
+
+<body onload="setupPicker();">
+
+	<div class="box">
+		<h1>Unstyled picker with range controls and text fields (click or tap to set colors, or use sliders)</h1>
+
+        <canvas id="slider" class="spSlider" width="200" height="20"></canvas><p></p>
+		<canvas id="color" class="spColor" width="200" height="200"></canvas><p></p>
+		<div id="preview" class="spPreview"></div> 
+
+		Red: <input type="range" min="0" max ="255" step="1" id="red"  /><br />
+		Green: <input type="range" min="0" max="255" step="1" id="green" /><br />
+		Blue: <input type="range" min="0" max="255" step="1" id="blue" /><br />
+		Hue: <input type="range" min="0" max="360" step="1" id="hue"  /><br />
+		Saturation: <input type="range" min="1" max="100" step="1" id="sat" /><br />
+		Luminance: <input type="range" min="1" max="100" step="1" id="lum" /><br />
+
+		RGB: <input type="text" id="rgb" value="" /> HSL: <input type="text" id="hsl" value = "" />
+	</div>
+
+	<div class="box styled">	
+		<h1>Picker with CSS styling for Safari, Chrome or IE 10. Any modern HTML5 browser should work.</h1>
+
+		<div class="picker">
+			<div class="sl">
+				<canvas class="spColor" id="colorStyle" width="350" height="200"></canvas>
+			</div>
+			<div class="hue">
+				<canvas class="spSlider" id="sliderStyle" width="75" height="200"></canvas>
+			</div>
+		</div>
+
+		<div class="controls">
+			<div class="sliders">
+				<div class="rgb">
+					<span class="label">Red:</span> <input type="range" min="0" max="255" step="1" id="redStyle" />
+					<span class="label">Green:</span> <input type="range" min="0" max="255" step="1" id="greenStyle" />
+					<span class="label">Blue:</span> <input type="range" min="0" max="255" step="1" id="blueStyle" />
+				</div>
+				<div class="hsl">
+					<span class="label">Hue:</span> <input type="range" min="0" max="360" step="1" id="hueStyle"  />
+					<span class="label">Saturation:</span> <input type="range" min="1" max="100" step="1" id="satStyle" />
+					<span class="label">Luminance:</span> <input type="range" min="1" max="100" step="1" id="lumStyle" />
+				</div>
+			</div>
+			<div class="spPreview" id="previewStyle"></div> 
+
+            <div class="input">
+			    RGB: <input class="rgb" type="text" id="rgbStyle" value="" /> 
+                HSL: <input class="hsl" type="text" id="hslStyle" value="" />
+		    </div>
+		</div>
+
+	</div>
+
+</body>
+</html>
